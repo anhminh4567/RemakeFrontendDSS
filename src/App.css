@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Noto Sans Georgian');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --navbar-height: 4rem;
+    --sidebar-width: 12rem
+}
+
+/* default  */
+@layer base {
+
+    html {
+        font-family: "Noto Sans Georgian", sans-serif;
+        padding: 0;
+        margin: 0;
+    }
+
+    .page-content {
+        /* @apply w-full;
+        padding-top: var(--navbar-height);
+     */
+    }
+
+
+    h1 {
+        @apply text-4xl;
+        @apply font-bold;
+    }
+
+    h2 {
+        @apply text-3xl;
+        @apply font-bold;
+    }
+
+    h3 {
+        @apply text-2xl;
+        @apply font-bold;
+    }
+
+    h4 {
+        @apply text-xl;
+        @apply font-semibold;
+    }
+
+    h5 {
+        @apply text-lg;
+        /*or text-lg */
+        @apply font-semibold;
+    }
+
+    h6 {
+        @apply text-sm;
+        @apply font-semibold;
+    }
+
+}
+
+@layer components {}
+
+@layer utilities {
+    .underline-animation {
+        @apply relative no-underline
+    }
+
+    .underline-animation::after {
+        @apply content-[''] bg-main-gray h-[2px] w-0 rounded-sm absolute bottom-0 duration-200
+    }
+
+    .underline-animation:hover::after {
+        @apply w-full
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+}
