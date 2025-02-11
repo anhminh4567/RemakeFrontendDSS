@@ -56,7 +56,9 @@ const request = async <T>(
 
     switch (method) {
       case "GET":
-        response = await HttpClient.get<T>(uri);
+        response = await HttpClient.get<T>(uri, {
+          params: data,
+        });
         break;
       case "POST":
         response = await HttpClient.post<T>(uri, data);
@@ -102,7 +104,8 @@ const requestFormData = async <T>(
   }
 };
 export const ApiClient = {
-  get: <T>(url: string) => request<T>("GET", url, ApiInstance, undefined),
+  get: <T>(url: string, params?: any) =>
+    request<T>("GET", url, ApiInstance, params),
   post: <T>(url: string, data: any) =>
     request<T>("POST", url, ApiInstance, data),
   put: <T>(url: string, data?: any) =>
