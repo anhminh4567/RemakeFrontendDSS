@@ -25,13 +25,16 @@ const Navbar = () => {
 
           <div className=" w-full md:block md:w-auto flex-[0.9]">
             <ul className="w-full leading-5 whitespace-nowrap flex flex-row flex-wrap justify-around">
-              <li className="group inline-flex hover:cursor-pointer flex-row justify-center items-center text-small">
+              <Link
+                className="group inline-flex hover:cursor-pointer flex-row justify-center items-center text-small"
+                to="/diamond"
+              >
                 diamond
                 <FiChevronDown className="" />
                 <div className="absolute w-screen left-0 top-[20%] pt-10 hidden group-hover:block hover:block">
                   <MegaMenu />
                 </div>
-              </li>
+              </Link>
               <li className="inline-flex hover:cursor-pointer flex-row justify-center items-center text-small">
                 about
                 <FiChevronDown />

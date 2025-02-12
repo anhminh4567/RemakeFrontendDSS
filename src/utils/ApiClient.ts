@@ -2,7 +2,6 @@ import { ApiErrorResponse } from "@/types/HttpResponses/ApiErrorResponse";
 import { ApiResponse } from "@/types/HttpResponses/ApiResponse";
 import axios, { AxiosInstance } from "axios";
 import ApiInstance from "./AxiosInstant";
-
 const handleError = (err: any): ApiResponse<any> => {
   if (axios.isAxiosError(err)) {
     if (err.response) {

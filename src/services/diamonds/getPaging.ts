@@ -12,7 +12,7 @@ import {
 import { ApiResponse } from "@/types/HttpResponses/ApiResponse";
 import { PagingResponse } from "@/types/HttpResponses/PagingResponse";
 import { ProductStatus } from "@/types/ProductStatus";
-import { ApiClient } from "@/utils/ApiClient";
+import { ApiClient } from "../../utils/ApiClient";
 
 export type GetDiamondPagingRequest = {
   isLab?: boolean;
