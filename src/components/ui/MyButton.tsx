@@ -18,7 +18,7 @@ const defaultSetting: MyButtonProps = {
   onClick: () => {},
 };
 const SizeMD = "px-5 py-2.5 ";
-const SizeSM = "px-3 py-2";
+const SizeSM = "btn-sm ";
 const MyButton = (params: MyButtonProps) => {
   //const [size, setSize] = useState<string>(SizeMD);
   const mergedSetting: MyButtonProps = {
@@ -36,7 +36,7 @@ const MyButton = (params: MyButtonProps) => {
     <button
       type="button"
       onClick={onClick}
-      className={`btn text-white bg-main-gold hover:bg-dark-gold focus:ring-main-gold  font-medium rounded-lg  text-sm  ${size}   ${
+      className={`btn leading-3 text-white bg-main-gold hover:bg-dark-gold focus:ring-main-gold  font-medium rounded-lg  text-sm ${size}   ${
         !params.className ? "" : params.className
       }`}
       {...mergedSettingWithoutClassName}

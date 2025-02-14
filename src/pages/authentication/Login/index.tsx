@@ -48,7 +48,7 @@ const Login = () => {
       ToastFunction.fail({ message: "login not so good" });
     }
     cleanParam();
-    navigate("/");
+    window.location.href = "/";
   }
 
   useEffect(() => {}, []);

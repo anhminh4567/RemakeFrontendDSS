@@ -5,10 +5,12 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Account, AuthContextType } from "../types/Account";
+import { Account } from "../types/Account";
+import { AuthContextType } from "@/types/context/AuthContextType";
 import { useCookies } from "react-cookie";
 import { accessTokenKVP, refreshTokenKVP } from "@/constants/storageKey";
 import { AccountService } from "@/services/accounts";
+import { jwtDecode } from "jwt-decode";
 const AuthContext = createContext<AuthContextType | null>(null);
 const ACCOUNT_SESSION_KEY = "ACCOUNT_INFORMATION";
 const LS_ACCESS_TOKEN = accessTokenKVP;
@@ -28,9 +30,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
   const login = (accessToken: string, refreshToken: string) => {
     //setAccountCookie(ACCOUNT_SESSION_KEY, JSON.stringify(account));
+
+    const decodedToken = jwtDecode(accessToken);
+    console.log(decodedToken);
+    console.log(accountCookie);
     localStorage.setItem(LS_ACCESS_TOKEN, accessToken);
     localStorage.setItem(LS_REFRESH_TOKEN, refreshToken);
-
     //    setAccount(account);
   };
   const logout = () => {
@@ -38,6 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(LS_ACCESS_TOKEN);
     localStorage.removeItem(LS_REFRESH_TOKEN);
     setAccount(null);
+    removeAccountCookie(ACCOUNT_SESSION_KEY);
   };
   const getAccountInfo = async (): Promise<Account | null> => {
     const response = await AccountService.GetDetail();
@@ -46,46 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return response.data;
     }
   };
-  // const refreshingToken = async (): Promise<
-  //   ApiResponse<AuthenticationResponse>
-  // > => {
-  //   const refreshToken = localStorage.getItem(refreshTokenKVP);
-  //   if (!refreshToken)
-  //     return {
-  //       isSuccess: false,
-  //     };
-  //   try {
-  //     var refreshTokenResponse = await SimpleClient.put<AuthenticationResponse>(
-  //       `/Account/RefreshToken?refreshToken=${refreshToken}`,
-  //       null,
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     );
-  //     return Promise.resolve(
-  //       ApiResponse.CreateSuccess(refreshTokenResponse.data)
-  //     );
-  //   } catch (error) {
-  //     const errorResult = ApiResponse.CreateError<any>(
-  //       401,
-  //       "fail to re-authenticate"
-  //     );
-  //     localStorage.removeItem(refreshTokenKVP);
-  //     localStorage.removeItem(accessTokenKVP);
-  //     return Promise.reject(errorResult);
-  //   }
-  // };
   useEffect(() => {
-    // const checkAndFetchAccount = async () => {
-    //   let acc = await getAccountInfo();
-    //   if (!acc) {
-    //     let refreshResponse = await refreshingToken();
-    //     if (refreshResponse.isSuccess) {
-    //       acc = await getAccountInfo();
-    //     }
-    //   }
-    // };
-    // checkAndFetchAccount();
     const tryGetUserInfo = async () => {
       const acc = await getAccountInfo();
       if (!acc) {

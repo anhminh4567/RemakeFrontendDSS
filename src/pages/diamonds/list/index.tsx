@@ -1,28 +1,82 @@
-import { GetDiamondPaging } from "@/services/diamonds/getPaging";
+import {
+  GetDiamondPaging,
+  GetDiamondPagingRequest,
+} from "@/services/diamonds/getPaging";
 import { Diamond } from "@/types/diamonds/Diamond";
 import { useEffect, useState } from "react";
 import DiamondIcon from "@/assets/icons/DiamondIcon.png";
+import DiamondFilter from "../DiamondFilter";
+import { Pagination } from "flowbite-react";
 const DiamondList = () => {
   const [diamonds, setDiamonds] = useState<Diamond[]>([]);
-  useEffect(() => {
-    const getData = async () => {
-      let response = await GetDiamondPaging(false, {});
-      if (response.isSuccess) {
-        let resultedDiamond = response.data.Values;
-        setDiamonds((prevList) => [...prevList, ...resultedDiamond]);
-      }
+  const [page, setPage] = useState<number>(0);
+  const [totalPage, setTotalPage] = useState<number>(1);
+  const getData = async (reqBody?: GetDiamondPagingRequest) => {
+    // let response = await GetDiamondPaging(false, {});
+    // let filterLimit = await GetDiamondFilterLimit();
+    const [response] = await Promise.all([
+      GetDiamondPaging(false, !reqBody ? {} : reqBody),
+    ]);
+    if (response.isSuccess) {
+      let resultedDiamond = response.data.Values;
+      //setDiamonds((prevList) => [...prevList, ...resultedDiamond]);
+      setDiamonds(resultedDiamond);
+    }
+  };
+  const filterChangeHandler = (
+    colorFrom,
+    clarityFrom,
+    caratFrom,
+    cutFrom,
+    priceFrom,
+    colorTo,
+    clarityTo,
+    caratTo,
+    cutTo,
+    priceTo,
+    shapes,
+    isNatural
+  ) => {
+    let requestBody: GetDiamondPagingRequest = {
+      "diamond_4C.caratFrom": caratFrom,
+      "diamond_4C.caratTo": caratTo,
+      "diamond_4C.clarityFrom": clarityFrom,
+      "diamond_4C.clarityTo": clarityTo,
+      "diamond_4C.colorFrom": colorFrom,
+      "diamond_4C.colorTo": colorTo,
+      "diamond_4C.cutFrom": cutFrom,
+      "diamond_4C.cutTo": cutTo,
+      isLab: !isNatural,
+      priceStart: priceFrom,
+      priceEnd: priceTo,
+      shapeId: shapes,
+      pageSize: 10,
     };
+    console.log("this get data from filter is called");
+    getData(requestBody);
+  };
+  useEffect(() => {
     getData();
   }, []);
   return (
     <>
-      <div className=" w-full h-[300px] text-center ">
-        <p className="my-auto">filter</p>
-      </div>
+      <DiamondFilter onFilterChange={filterChangeHandler} />
+
       <div className="grid grid-cols-4 gap-3 mx-3">
-        {diamonds.map((diamond, i) => (
+        {diamonds.map((diamond) => (
           <DiamondCard diamond={diamond} />
         ))}
+      </div>
+      <div className="flex flex-row justify-center my-4">
+        <Pagination
+          className="text-main-gold bg-main-gray hover:bg-main-gold"
+          currentPage={page}
+          totalPages={100}
+          previousLabel="prev"
+          nextLabel="next"
+          onPageChange={() => {}}
+          showIcons
+        />
       </div>
     </>
   );
