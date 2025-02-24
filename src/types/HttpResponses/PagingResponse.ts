@@ -1,7 +1,7 @@
 export type PagingResponse<T> = {
-  totalPage: number;
-  currentPage: number;
+  TotalPage: number;
+  CurrentPage: number;
   Values: T[];
-  totalCount?: number;
-  totalTake?: number;
+  TotalCount?: number;
+  TotalTake?: number;
 };

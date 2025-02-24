@@ -9,7 +9,7 @@ import { IRenderMarkParams } from "react-range/lib/types";
 import { Formatter } from "@/utils/Formater";
 import SHAPES from "@/constants/shapes";
 const IMAGE_SM = "w-8 h-8";
-const IMAGE_LG = "w-24 h-24";
+//const IMAGE_LG = "w-24 h-24";
 
 export interface DiamondFilterProps {
   delayedWhenFilterChange?: number;
