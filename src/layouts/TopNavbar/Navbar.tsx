@@ -2,7 +2,7 @@ import ShopIcons from "@/assets/icons/ShopIcon.png";
 import UserIcons from "@/assets/icons/avatarbase.jpg";
 import { FiChevronDown, FiShoppingCart, FiBell } from "react-icons/fi";
 import MegaMenu from "./MegaMenu";
-import MyButton from "@/components/ui/MyButton";
+import MyButton from "@/components/ui/buttons/MyButton";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "@/context/useAuthContext";
 
@@ -68,7 +68,9 @@ const Navbar = () => {
             ) : (
               <>
                 <div>
-                  <FiShoppingCart className="m-1" />
+                  <Link to={{ pathname: "/cart" }}>
+                    <FiShoppingCart className="m-1" />
+                  </Link>
                 </div>
                 <div className="relative">
                   <FiBell className="m-1" />

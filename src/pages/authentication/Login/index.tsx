@@ -1,5 +1,5 @@
 import MyInput from "@/components/form/MyInput";
-import MyButton, { MyButtonSize } from "@/components/ui/MyButton";
+import MyButton, { MyButtonSize } from "@/components/ui/buttons/MyButton";
 import { FiMail, FiLock } from "react-icons/fi";
 import { FaGoogle } from "react-icons/fa";
 import { FormEvent, useEffect, useState } from "react";

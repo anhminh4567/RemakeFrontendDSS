@@ -1,5 +1,5 @@
 import TwoWaySlider from "@/components/ui/TwoWaySlider";
-import MyButton, { MyButtonSize } from "@/components/ui/MyButton";
+import MyButton, { MyButtonSize } from "@/components/ui/buttons/MyButton";
 import { GetDiamondFilterLimit } from "@/services/diamonds/getFilterLimit";
 import { DiamondFilterLimit } from "@/types/HttpResponses/DiamondFilterLimitResponse";
 import { getEnumStringFromNumber } from "@/utils/enumUtils";

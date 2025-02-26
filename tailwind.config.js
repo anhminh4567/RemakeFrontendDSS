@@ -19,6 +19,7 @@ export default {
         "light-gold": COLORS.lightGold,
         "secondary-gold": COLORS.secondaryGold,
         "main-gray": COLORS.mainGray,
+        "light-gray": COLORS.lightGray,
       },
       fontSize: {
         small: "0.7rem",

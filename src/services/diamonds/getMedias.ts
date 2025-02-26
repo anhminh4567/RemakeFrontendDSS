@@ -1,7 +1,9 @@
 import { ApiResponse } from "@/types/HttpResponses/ApiResponse";
 import { ApiClient } from "@/utils/ApiClient";
-import { Diamond } from "@/types/diamonds/Diamond";
+import { Gallery } from "@/types/Gallery";
 
-export function GetDiamondMedia(id: string): Promise<ApiResponse<Diamond>> {
-  return ApiClient.get<Diamond>(`Diamond/${id}`);
+export async function GetDiamondMedia(
+  id: string
+): Promise<ApiResponse<Gallery>> {
+  return ApiClient.get<Gallery>(`Diamond/${id}/Files`);
 }

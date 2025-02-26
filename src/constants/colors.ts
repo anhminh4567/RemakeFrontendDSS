@@ -10,6 +10,7 @@ const lightGold = "#d4c69b";
 const lightGoldRGBA = "rgba(212, 198, 155, 1)";
 const textBlackRGBA = "rgba(0, 0, 0, 1)";
 const textWhiteRGBA = "rgba(255, 255, 255, 1)";
+const lightGray = "#ededed";
 export const COLORS = {
   mainBlue,
   mainGold,
@@ -23,4 +24,5 @@ export const COLORS = {
   lightGoldRGBA,
   textBlackRGBA,
   textWhiteRGBA,
+  lightGray,
 };
