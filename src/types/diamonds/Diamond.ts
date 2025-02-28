@@ -1,6 +1,6 @@
 import { Media } from "../Media";
-import { ProductLock } from "../ProductLock";
-import { ProductStatus } from "../ProductStatus";
+import { ProductLock } from "../shared/ProductLock";
+import { ProductStatus } from "../shared/ProductStatus";
 import { DiamondPrice } from "./DiamondPrice";
 import { DiamondShape } from "./DiamondShape";
 import {

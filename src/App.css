@@ -8,7 +8,9 @@
 
 :root {
     --navbar-height: 4rem;
-    --sidebar-width: 12rem
+    --sidebar-width: 12rem;
+    --small-padding: 1rem;
+    --navbar-height-plus-small-padding: calc(var(--navbar-height) + var(--small-padding));
 }
 
 /* default  */

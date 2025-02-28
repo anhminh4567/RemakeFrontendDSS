@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { useAuthContext } from "./useAuthContext";
-import { Account } from "@/types/Account";
+import { Account } from "@/types/accounts/Account";
 import { CartItem } from "@/types/HttpRequests/cart/CartItemRequest";
 
 const UserContext = createContext<UserContextType>(

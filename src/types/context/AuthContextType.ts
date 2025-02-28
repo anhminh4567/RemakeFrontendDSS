@@ -1,4 +1,4 @@
-import { Account } from "../Account";
+import { Account } from "../accounts/Account";
 
 export type AuthContextType = {
   user?: Account;

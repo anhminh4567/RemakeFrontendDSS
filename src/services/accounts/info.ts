@@ -1,4 +1,4 @@
-import { Account } from "@/types/Account";
+import { Account } from "@/types/accounts/Account";
 import { ApiResponse } from "@/types/HttpResponses/ApiResponse";
 import { ApiClient } from "@/utils/ApiClient";
 

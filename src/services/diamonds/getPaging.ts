@@ -11,7 +11,7 @@ import {
 } from "@/types/diamonds/Enums";
 import { ApiResponse } from "@/types/HttpResponses/ApiResponse";
 import { PagingResponse } from "@/types/HttpResponses/PagingResponse";
-import { ProductStatus } from "@/types/ProductStatus";
+import { ProductStatus } from "@/types/shared/ProductStatus";
 import { ApiClient } from "../../utils/ApiClient";
 
 export type GetDiamondPagingRequest = {

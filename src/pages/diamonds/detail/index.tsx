@@ -24,9 +24,10 @@ import MyButton, { MyButtonSize } from "@/components/ui/buttons/MyButton";
 import MySecondaryButton from "@/components/ui/buttons/MySecondaryButton";
 import { IoIosInformationCircle } from "react-icons/io";
 import { CartItem } from "@/types/cart/CartItem";
-import { WarrantyType } from "@/types/WarrantyType";
-import { cartService } from "@/services/carts";
+import { WarrantyType } from "@/types/warranty/WarrantyType";
+// import { cartService } from "@/services/carts";
 import { ToastFunction } from "@/components/toaster/myToast";
+import useCartService from "@/hooks/useCartService";
 
 const DiamondDetail = () => {
   const { diamondId } = useParams();
@@ -34,6 +35,7 @@ const DiamondDetail = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [gallery, setGallery] = useState<Gallery | null>(null);
   const [mediaList, setMediaList] = useState<Media[]>([]);
+  const { add } = useCartService();
   const getData = async () => {
     let [diamondResponse, galleryResponse] = await Promise.all([
       GetDiamond(diamondId),
@@ -63,11 +65,14 @@ const DiamondDetail = () => {
     let diamondItem = CartItem.CreateDiamondItem(
       diamond.Id,
       WarrantyType.Diamond,
-      "nonthing"
+      "nonthing",
+      diamond,
+      gallery.Thumbnail?.MediaPath
     );
     try {
-      cartService.add(diamondItem);
-      ToastFunction.success({ message: "Thêm thành công" });
+      let isAddOk = add(diamondItem);
+      if (isAddOk) ToastFunction.success({ message: "Thêm thành công" });
+      else throw new Error();
     } catch (err) {
       ToastFunction.fail({ message: "Thêm Thất Bại" });
     }

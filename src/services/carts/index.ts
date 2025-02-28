@@ -1,5 +1,8 @@
 import { userCartKVP } from "@/constants/storageKey";
 import { CartItem } from "@/types/cart/CartItem";
+import { ValidateCartRequest } from "@/types/cart/ValidateCartRequest";
+import { ApiResponse } from "@/types/HttpResponses/ApiResponse";
+import { ApiClient } from "@/utils/ApiClient";
 function add(item: CartItem): void {
   if (!item) return;
   let currentItems = getFromStorage();
@@ -22,10 +25,8 @@ function get(
   const result = currentItems.find(delegate);
   return result;
 }
-function getAll() {
-  let currentItems = JSON.parse(
-    localStorage.getItem(userCartKVP)
-  ) as CartItem[];
+function getAll(): CartItem[] {
+  let currentItems = getFromStorage();
   return currentItems;
 }
 function clear() {
@@ -41,4 +42,9 @@ function getFromStorage(): CartItem[] {
   }
   return JSON.parse(stringCart) as CartItem[];
 }
+
+// async function validate(cartObj: ValidateCartRequest) : Promise<ApiResponse< {
+//   let result = ApiClient.post("/Cart/Validate", cartObj)
+// }
+async function checkout() {}
 export const cartService = { add, remove, get, clear, getAll };

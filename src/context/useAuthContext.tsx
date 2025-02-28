@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Account } from "../types/Account";
+import { Account } from "../types/accounts/Account";
 import { AuthContextType } from "@/types/context/AuthContextType";
 import { useCookies } from "react-cookie";
 import { accessTokenKVP, refreshTokenKVP } from "@/constants/storageKey";

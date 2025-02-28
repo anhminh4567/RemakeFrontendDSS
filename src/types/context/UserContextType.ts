@@ -1,4 +1,4 @@
-import { Account } from "../Account";
+import { Account } from "../accounts/Account";
 import { CartItem } from "../HttpRequests/cart/CartItemRequest";
 
 export class UserContextType {

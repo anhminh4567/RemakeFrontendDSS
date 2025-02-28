@@ -1,5 +1,7 @@
 import { IdGen } from "@/utils/IdGenerator";
-import { WarrantyType } from "../WarrantyType";
+import { WarrantyType } from "../warranty/WarrantyType";
+import { Diamond } from "../diamonds/Diamond";
+import { Warranty } from "../warranty/Warranty";
 
 export class CartItem {
   public Id: string;
@@ -13,7 +15,10 @@ export class CartItem {
   public EngravedFont?: string;
   public WarrantyCode?: string;
   public WarrantyType?: WarrantyType;
-
+  public ThumbnailPath?: string;
+  // for web purpose
+  public Diamond?: Diamond;
+  public Warranty?: Warranty;
   //   constructor(
   //     id: string,
   //     jewelryId: string | null = null,
@@ -45,7 +50,9 @@ export class CartItem {
   static CreateDiamondItem(
     diamondId: string,
     warrantyType: WarrantyType,
-    warrantyCode: string
+    warrantyCode: string,
+    Diamond: Diamond,
+    thumbnailPath?: string
   ): CartItem {
     let newItem = new CartItem(IdGen.create());
     if (!diamondId || !warrantyType)
@@ -53,6 +60,17 @@ export class CartItem {
     newItem.DiamondId = diamondId;
     newItem.WarrantyType = warrantyType;
     newItem.WarrantyCode = warrantyCode;
+    newItem.ThumbnailPath = thumbnailPath;
+    newItem.Diamond = Diamond;
     return newItem;
+  }
+  isDiamond() {
+    return this.DiamondId != null && this.Diamond != null;
+  }
+  isDiamondAttach() {
+    return this.isDiamond() && this.JewelryId != null;
+  }
+  setWarranty(warranty: Warranty) {
+    this.Warranty = warranty;
   }
 }
