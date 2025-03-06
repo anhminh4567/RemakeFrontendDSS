@@ -19,7 +19,7 @@ function create(options?: IdGenOptions) {
     source = source + ALLOWED_NUM;
   }
   let result = "";
-  for (let i; i < options.length; i++) {
+  for (let i = 0; i < options.length; i++) {
     let randomNo = clamp(
       Math.floor(Math.random() * source.length),
       0,

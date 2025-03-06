@@ -26,6 +26,26 @@ export class Account {
   setPoint(point: number) {
     this.TotalPoint = point;
   }
+  getDefaultAddress(): Address | null {
+    if (!this.Addresses) return null;
+    let defAddress = this.Addresses.filter((x) => x.IsDefault).pop();
+    if (!defAddress) return this.Addresses[0];
+    else return defAddress;
+  }
+  static fromOldObject(acc: Account): Account {
+    let newAcc = new Account();
+    newAcc.Addresses = acc.Addresses;
+    newAcc.Email = acc.Email;
+    newAcc.FirstName = acc.FirstName;
+    newAcc.LastName = acc.LastName;
+    newAcc.Id = acc.Id;
+    newAcc.PhoneNumber = acc.PhoneNumber;
+    newAcc.Roles = acc.Roles;
+    newAcc.TotalPoint = acc.TotalPoint;
+    newAcc.UserIdentity = acc.UserIdentity;
+    newAcc.IdentityId = acc.IdentityId;
+    return newAcc;
+  }
 }
 
 export class Address {

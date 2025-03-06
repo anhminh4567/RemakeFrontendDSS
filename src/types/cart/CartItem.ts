@@ -64,13 +64,15 @@ export class CartItem {
     newItem.Diamond = Diamond;
     return newItem;
   }
-  isDiamond() {
-    return this.DiamondId != null && this.Diamond != null;
+  static isDiamond(item: CartItem) {
+    return item.DiamondId != null && item.Diamond != null;
   }
-  isDiamondAttach() {
-    return this.isDiamond() && this.JewelryId != null;
+  static isDiamondAttach(item: CartItem) {
+    return CartItem.isDiamond(item) && item.JewelryId != null;
   }
   setWarranty(warranty: Warranty) {
     this.Warranty = warranty;
+    this.WarrantyCode = warranty.Code;
+    this.WarrantyType = warranty.Type;
   }
 }

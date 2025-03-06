@@ -8,7 +8,7 @@ import {
 } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { Account } from "@/types/accounts/Account";
-import { CartItem } from "@/types/HttpRequests/cart/CartItemRequest";
+import { cartService } from "@/services/carts";
 
 const UserContext = createContext<UserContextType>(
   UserContextType.createDefault()
@@ -22,6 +22,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [userContext, setUserContxt] = useState<UserContextType>(
     UserContextType.createDefault()
   );
+
   const { user } = useAuthContext();
   function setAcc(acc: Account) {
     setUserContxt({
@@ -30,29 +31,29 @@ export function UserProvider({ children }: { children: ReactNode }) {
       IsAnonymouse: false,
     });
   }
-
-  function addToCart(item: CartItem) {
-    this.Cart.push(item);
-  }
-  function removeFromCart(id: string) {
-    let idx = this.Cart.findIndex((item) => item.id == id);
-    this.Cart.splice(idx, 0);
+  function setCart() {
+    let result = cartService.getAll();
+    setUserContxt((prevValue) => ({
+      ...prevValue,
+      Cart: result,
+    }));
   }
   useEffect(() => {
     if (user) {
       setAcc(user);
     }
+    setCart();
   }, [user]);
 
   return (
     <>
       <UserContext.Provider
         value={{
-          Account: user,
+          Account: user ? Account.fromOldObject(user) : null,
           Cart: userContext.Cart,
           IsAnonymouse: userContext.IsAnonymouse,
-          addToCart: addToCart,
-          removeFromCart: removeFromCart,
+          // addToCart: addToCart,
+          // removeFromCart: removeFromCart,
         }}
       >
         {children}

@@ -1,5 +1,5 @@
 import { Account } from "../accounts/Account";
-import { CartItem } from "../HttpRequests/cart/CartItemRequest";
+import { CartItem } from "../cart/CartItem";
 
 export class UserContextType {
   Account?: Account;
@@ -12,6 +12,6 @@ export class UserContextType {
   static createDefault() {
     return new UserContextType();
   }
-  addToCart: (item: CartItem) => void;
-  removeFromCart: (id: string) => void;
+  // addToCart: (item: CartItem) => void;
+  // removeFromCart: (id: string) => void;
 }

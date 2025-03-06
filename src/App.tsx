@@ -8,6 +8,11 @@ import { COLORS } from "@/constants";
 
 const MY_THEME_NORMAL: ThemeConfig = {
   components: {
+    Dropdown: {
+      colorText: "#000000",
+      controlItemBgActive: COLORS.lightGold,
+      controlItemBgActiveHover: COLORS.mainGold,
+    },
     Pagination: {
       //itemActiveBg: COLORS.lightGold,
       //colorText:
@@ -31,21 +36,23 @@ const MY_THEME_NORMAL: ThemeConfig = {
     },
   },
   token: {
+    colorBgElevated: "#ffffff",
     colorPrimary: COLORS.mainGold,
     colorBgBase: COLORS.mainGold,
-    colorTextSecondary: "ffffff",
-    colorTextBase: "000000",
+    colorTextSecondary: "#ffffff",
+    colorTextBase: "#000000",
     colorErrorText: "red",
     colorBgTextActive: COLORS.darkGoldRGBA,
     colorBgTextHover: COLORS.secondaryGold,
     colorPrimaryBorder: COLORS.lightGold,
-    colorBgContainer: "ffffff",
+    colorBgContainer: "#ffffff",
     colorPrimaryHover: COLORS.mainGold,
     colorBorder: COLORS.darkGold,
     colorBorderSecondary: COLORS.mainGray,
     colorInfoBorder: COLORS.mainGold,
     colorInfoBorderHover: COLORS.darkGold,
     colorPrimaryBorderHover: COLORS.darkGold,
+    controlItemBgActive: COLORS.mainGold,
   },
 };
 function App() {

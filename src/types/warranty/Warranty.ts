@@ -1,11 +1,12 @@
 import { WarrantyType } from "./WarrantyType";
 
 export type Warranty = {
-  WarrantyType: WarrantyType;
+  Type: WarrantyType;
   Name: string;
-  LocalizedName: string;
+  MappedName: string;
   Code: string;
   MonthDuration: number;
   CreateDate: Date;
   Price: number;
+  PriceText: string;
 };

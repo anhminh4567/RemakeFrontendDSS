@@ -1,7 +1,12 @@
 import { userCartKVP } from "@/constants/storageKey";
+import { Account } from "@/types/accounts/Account";
 import { CartItem } from "@/types/cart/CartItem";
+import { CartModel } from "@/types/cart/cartModel/CartModel";
 import { ValidateCartRequest } from "@/types/cart/ValidateCartRequest";
+import { AddressRequest } from "@/types/HttpRequests/AddressRequest";
 import { ApiResponse } from "@/types/HttpResponses/ApiResponse";
+import { Promotion } from "@/types/promotion/Promotion";
+import { PaymentType } from "@/types/shared/PaymentType";
 import { ApiClient } from "@/utils/ApiClient";
 function add(item: CartItem): void {
   if (!item) return;
@@ -46,5 +51,25 @@ function getFromStorage(): CartItem[] {
 // async function validate(cartObj: ValidateCartRequest) : Promise<ApiResponse< {
 //   let result = ApiClient.post("/Cart/Validate", cartObj)
 // }
-async function checkout() {}
-export const cartService = { add, remove, get, clear, getAll };
+async function validate(
+  cartItems: CartItem[],
+  paymentType?: PaymentType,
+  promotion?: Promotion,
+  user?: Account,
+  address?: AddressRequest
+): Promise<ApiResponse<CartModel>> {
+  if (!cartItems)
+    throw new Error("cart item is null, nearly impossiblee state");
+  let validateRequest: ValidateCartRequest = {
+    IsAtShopOrder: false,
+    IsCustomOrder: false,
+    Items: cartItems,
+    AccountId: user?.Id,
+    PaymentType: paymentType,
+    PromotionId: promotion?.Id,
+    UserAddress: address,
+  };
+  let result = ApiClient.post<CartModel>("Cart/Validate", validateRequest);
+  return result;
+}
+export const cartService = { add, remove, get, clear, getAll, validate };
