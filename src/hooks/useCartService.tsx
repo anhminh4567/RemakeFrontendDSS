@@ -13,7 +13,7 @@ const useCartService = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isValidating, setIsValidating] = useState<boolean>(true);
   const [validateError, setValidateError] = useState<any>(null);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [_, setCartItems] = useState<CartItem[]>([]);
   const [error, setError] = useState<any>(null);
   const [validateResult, setValidateResult] = useState<CartModel | null>(null);
   const get = cartService.get;
@@ -53,6 +53,9 @@ const useCartService = () => {
     address?: AddressRequest
   ) {
     try {
+      setIsValidating(true);
+      setValidateError(null);
+      setValidateResult(null);
       let validateResult = await cartService.validate(
         cartItems,
         paymentType,
@@ -93,7 +96,7 @@ const useCartService = () => {
 
   return {
     isLoading,
-    cartItems,
+
     error,
     validateResult,
     isValidating,

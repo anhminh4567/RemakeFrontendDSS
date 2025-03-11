@@ -34,6 +34,9 @@ const MY_THEME_NORMAL: ThemeConfig = {
     Input: {
       activeBorderColor: COLORS.mainGold,
     },
+    Table: {
+      colorText: COLORS.textBlackRGBA,
+    },
   },
   token: {
     colorBgElevated: "#ffffff",

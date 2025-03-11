@@ -1,15 +1,15 @@
 import { Promotion } from "./Promotion";
 
 export interface PromoResponse {
-  amountSaved: number;
-  promoId: string;
-  promotionDto: Promotion;
-  isApplicable: boolean;
-  errorMessage?: string; // Optional property
+  AmountSaved: number;
+  PromoId: string;
+  PromotionDto: Promotion;
+  IsApplicable: boolean;
+  ErrorMessage?: string; // Optional property
 }
 
 export interface ApplicablePromotion {
-  totalPromotionsCount: number;
-  applicablePromotionsCount: number;
-  promotions: PromoResponse;
+  TotalPromotionsCount: number;
+  ApplicablePromotionsCount: number;
+  Promotions: PromoResponse[];
 }

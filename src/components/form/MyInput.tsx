@@ -12,17 +12,18 @@ const MyInput = (params: MyInputProps) => {
     ...defaultSetting,
     ...params,
   };
+  const { className, ...remainProps } = merged;
   return (
     <>
       <label
-        className={`input input-bordered focus-within:border-main-gold focus-within:outline-main-gold focus-within:outline-none border-main-gold focus:border-main-gold focus:border-none focus-visible:out flex items-center gap-2 ${
-          merged.className ?? ""
-        }`}
+        className={`input input-bordered h-fit focus-within:border-main-gold focus-within:outline-main-gold focus-within:outline-none border-main-gold focus:border-main-gold focus:border-none focus-visible:out flex items-center  gap-2 `}
       >
         {merged.IconsElement && <span>{merged.IconsElement}</span>}
         <input
-          className="text-sm border-none w-full focus:border-none focus:ring-0"
-          {...merged}
+          className={`text-sm border-none w-full focus:border-none focus:ring-0 ${
+            className ? className : ""
+          }`}
+          {...remainProps}
         />
       </label>
     </>

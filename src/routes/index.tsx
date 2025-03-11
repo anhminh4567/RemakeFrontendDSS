@@ -2,6 +2,7 @@
 import PageContainer from "@/layouts/PageContainer";
 import Login from "@/pages/authentication/Login";
 import Cart from "@/pages/cart";
+import CheckoutCart from "@/pages/cart/checkout";
 import DiamondDetail from "@/pages/diamonds/detail";
 import DiamondList from "@/pages/diamonds/list";
 import Home from "@/pages/home";
@@ -30,6 +31,10 @@ const AllRoutes = () => {
           </Route>
           <Route path="cart">
             <Route index element={<PageContainer children={<Cart />} />} />
+            <Route
+              path="checkout"
+              element={<PageContainer children={<CheckoutCart />} />}
+            />
           </Route>
         </Route>
         <Route path="error">

@@ -4,7 +4,7 @@ export interface MyBadgeProps extends HTMLAttributes<HTMLDivElement> {
   Size: "sm" | "md" | "lg";
 }
 const MyBadge = (params: MyBadgeProps) => {
-  const { Content, Size, className } = params;
+  const { Content, Size, className, ...remain } = params;
   let sizePadding = "";
   if (Size == "md") sizePadding = "p-3";
   else if (Size == "sm") sizePadding = "p-2";
@@ -13,6 +13,7 @@ const MyBadge = (params: MyBadgeProps) => {
     <>
       <div
         className={`badge bg-main-gold text-white ${sizePadding} rounded-md gap-3 ${className}`}
+        {...remain}
       >
         {Content}
       </div>
